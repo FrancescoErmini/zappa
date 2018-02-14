@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body> 
+<ui:composition>
+
+<div class="block tabella-header">
+<h2>
+<h:outputText value="#{registroController.registroType.registroPage}" />
+<h:outputText value=" #{registroController.registroType.luogoType.pagina}" />
+<h:outputText value=" #{registroController.registri.get(0).luogo.nome}" rendered="#{not empty registroController.registri}"/>
+</h2>
+</div>
+<div class="block tabella-header" style="text-align: left;">
+<h4>Creato in data:
+<h:outputText value="#{registroController.data}" />
+</h4>
+
+</div>
+
+
+
+
+</ui:composition>
+</body> 
+</html>

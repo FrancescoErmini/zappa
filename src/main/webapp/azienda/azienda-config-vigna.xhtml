@@ -1,0 +1,89 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition 
+xmlns="http://www.w3.org/1999/xhtml"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:decorate template="/WEB-INF/templates/layout.xhtml">
+   <ui:define name="body">
+
+
+
+
+	
+	<div class="block">
+				<h4><h:outputText value="Nome vigna:"/></h4>
+				<h:inputText value="#{aziendaAgricolaConfigController.luogo.nome}"/>
+				
+	</div>
+	<div class="block">			
+				<h4><h:outputText value="Cantina di appartenenza"/></h4>
+				<h:inputText value="#{aziendaAgricolaConfigController.luogo.cantina}"/>
+	</div>
+	<div class="block">			
+				<h4><h:outputText value="Superficie:"/></h4>
+				<h:inputText value="#{aziendaAgricolaConfigController.luogo.superficie}"/>
+	</div>
+	<div class="block">			
+				<h4><h:outputText value="Altitudine:"/></h4>
+				<h:inputText value="#{aziendaAgricolaConfigController.luogo.altitudine}"/>
+	</div>
+	<div class="block">			
+				<h4>	<h:outputText value="Descrizione vigna:"/></h4>
+				<h:inputTextarea cols="10" value="#{aziendaAgricolaConfigController.luogo.descrizioneVigna}"/>
+				
+	</div>
+	
+
+	        <div class="block" style="padding-top:30px;">
+			  <h:panelGrid columns="5" style="border-collapse: collapse;width:90%;">
+				<h:outputText value="Numero:" />
+			
+				<h:inputText value="#{aziendaAgricolaConfigController.oggetto.numero}"/>
+	      
+				<h:outputText value="Tipo:" />
+				
+				<h:inputText value="#{aziendaAgricolaConfigController.oggetto.tipo}"/>
+							<h:commandLink value="Add Filare" action="#{aziendaAgricolaConfigController.addOggetto()}"/>
+				
+			  </h:panelGrid>
+	
+			<h:dataTable value="#{aziendaAgricolaConfigController.oggetti}" var="oggetto" style="border-collapse: collapse;width:90%;" class="tabella">
+				<h:column>
+						<f:facet name="header">Numero</f:facet>
+				     	<h:outputText value="#{oggetto.numero}"/>
+				</h:column>
+				<h:column>
+						<f:facet name="header">Tipo</f:facet>
+					<h:outputText value="#{oggetto.tipo}"/>
+				</h:column >
+				<h:column>
+						
+					    <h:commandLink value="Delete" action="#{aziendaAgricolaConfigController.deleteOggetto(oggetto)}"/>
+				</h:column>
+			</h:dataTable>
+	</div>
+	   
+	
+	
+	
+			
+	
+
+			
+			
+			
+			
+			<div class="block">			
+			<h:commandButton action="#{aziendaAgricolaConfigController.saveAndCheck()}" value="salva e vedi" class="float-left nav"/>
+			<h:commandButton action="#{aziendaAgricolaConfigController.deleteAndExit()}" value="esci senza salvare" class="float-left nav"/>
+			
+			</div>
+			
+			
+
+			
+</ui:define>
+</ui:decorate>
+</ui:composition>

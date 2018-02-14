@@ -1,0 +1,33 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition 
+xmlns="http://www.w3.org/1999/xhtml"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core">
+<f:metadata>
+          
+<f:event listener="#{aziendaAgricolaConfigController.initConversation}"
+  type="preRenderView">
+</f:event>
+</f:metadata>
+
+<ui:decorate template="/WEB-INF/templates/layout.xhtml">
+<ui:define name="body">
+
+	<div class="block menu">
+	<ul>
+	<li>
+	<h:commandLink action="#{aziendaAgricolaConfigController.configAzienda('CANTINA')}" value="configura cantina" />
+	
+	</li>
+	<li>
+	<h:commandLink action="#{aziendaAgricolaConfigController.configAzienda('VIGNA')}" value="configura vigna" />
+
+	</li>
+	</ul>
+	</div>
+	
+</ui:define>
+</ui:decorate>
+</ui:composition>
+

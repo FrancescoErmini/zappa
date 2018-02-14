@@ -1,0 +1,45 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition 
+xmlns="http://www.w3.org/1999/xhtml"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core">
+<f:metadata>
+          
+<f:event listener="#{operazioneAddController.initConversation}"
+  type="preRenderView">
+</f:event>
+</f:metadata>
+<ui:decorate template="/WEB-INF/templates/layout.xhtml">
+<ui:define name="body">
+
+<!-- styleClass="menu" panelStyleClass="panel" -->
+<div class="block">
+	  	<h4>operazione:</h4>	
+		  <h:selectOneMenu  value="#{operazioneAddController.operazioneType}">
+		      	<f:selectItem itemValue="#{null}" itemLabel="--- seleziona ---" noSelectionOption="true" /> 
+		      	<f:selectItems value="#{operazioneAddController.operazioneTypeValues}" var="op" itemLabel="#{op}" itemValue="#{op}"/>
+		    </h:selectOneMenu> 
+
+
+	
+	<h:outputText class="info" value="errore, scegli operazione per proseguire"  rendered = "#{operazioneAddController.typeValidation}" style="color:red"/>  
+	
+	
+	<hr/>
+
+</div>
+
+		    
+		    <div class="block">
+		     <h:link outcome="/index.xhtml" value="Indietro"  styleClass="nav float-left"/>	
+		    
+		     <h:commandButton action="#{operazioneAddController.redirectOperazione}" value="Avanti" class="nav float-right"/>
+		    
+			
+      			
+       		 </div>
+		
+</ui:define>
+</ui:decorate>
+</ui:composition>

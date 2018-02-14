@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+
+
+</h:head> 
+<body> 
+<ui:composition>
+
+<div class="block tabella-header">
+
+<h2>Dettagli operazione
+<h:outputText value=" #{operazioneViewController.operazione.operazioneType}"></h:outputText>
+</h2>
+</div>
+
+
+
+<div class="block">
+<h4>Data:</h4>
+<h:outputText value="#{operazioneViewController.operazione.data}"></h:outputText>
+
+
+<h:outputText value=" #{operazioneViewController.operazione.ora}"></h:outputText>
+</div>
+
+
+
+
+<div class="block">
+<h4><h:outputText value="#{operazioneViewController.operazione.luogo.luogoType.toString()}"></h:outputText></h4>
+<h:outputText value="#{operazioneViewController.operazione.luogo.nome}"></h:outputText>
+</div>
+
+
+<div class="block">
+<h4><h:outputText value="#{operazioneViewController.operazione.oggetto.oggettoType.toString()}"></h:outputText></h4>
+<h:outputText value="#{operazioneViewController.operazione.oggetto.numero}"></h:outputText>
+</div>
+
+<div class="block">
+<h4>Responsabile:</h4>
+<h:outputText value="#{operazioneViewController.operazione.responsabile.nome}"></h:outputText>
+<hr />
+</div>
+
+
+
+
+
+
+</ui:composition>
+
+
+</body> 
+</html>

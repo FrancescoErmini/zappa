@@ -1,0 +1,48 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                 template="/WEB-INF/templates/layout.xhtml">
+<ui:define name="body">
+
+<div class="block">
+<h4>Quintali UVA</h4>
+	<h:inputText value="#{operazioneAddController.operazione.quintaliUVA}"/>
+</div>
+
+<div class="block">
+<h4> Vitigno</h4>  
+   <h:selectOneMenu id="vitigno" value="#{operazioneAddController.operazione.vitigno}" >
+				 		<f:selectItem itemValue="#{null}" itemLabel="Seleziona" noSelectionOption="true" />
+				 
+				  		<f:selectItems value="#{operazioneAddController.operazione.getVitignoValues()}" var="vitigno"
+				  						itemValue="#{vitigno}" itemLabel="#{vitigno.toString()}" />
+   </h:selectOneMenu>
+
+	<hr />
+</div>	
+
+<div class="block">
+<h4> Tipologia Vendemmia</h4>  
+   <h:selectOneMenu id="vendemmia" value="#{operazioneAddController.operazione.tipologiaVendemmia}" >
+				 		<f:selectItem itemValue="#{null}" itemLabel="Seleziona" noSelectionOption="true" />
+				 
+				  		<f:selectItems value="#{operazioneAddController.operazione.getTipologiaVendemmiaValues()}" var="tipologiaVendemmia"
+				  						itemValue="#{tipologiaVendemmia}" itemLabel="#{tipologiaVendemmia.toString()}" />
+   </h:selectOneMenu>	
+	
+	<hr/>
+</div>
+
+        
+   <ui:insert>
+	<ui:include src="/WEB-INF/save-action.xhtml" />
+</ui:insert>
+ 
+		 
+
+
+
+</ui:define>
+</ui:composition>

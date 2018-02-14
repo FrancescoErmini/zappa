@@ -1,0 +1,55 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/WEB-INF/templates/layout.xhtml">
+                
+<ui:define name="body">
+<h:outputText value="#{aziendaAgricolaController.luoghi.get(0).nome}" />
+<div class="block">
+	<ui:repeat var="luogo" value="#{aziendaAgricolaController.luoghi}">
+	
+	
+	<h2 style="margin:0; padding-top:20px;">
+	<h:outputText value="#{luogo.luogoType.pagina}" />
+	<h:outputText value=" #{luogo.nome}" />
+	</h2>
+	<ui:repeat var="oggetto" value="#{luogo.oggetti}">
+	
+<div class="tabella">
+				
+<table style="border-collapse: collapse;" id="azienda-view"> 
+	<tr>
+    <td>
+	
+	<h:outputText value="#{oggetto.oggettoType}" />
+	
+	<h:outputText value=" #{oggetto.numero}" />
+	</td>
+	<td>
+	<h:outputText value=" #{oggetto.tipo}" />
+	</td>
+	</tr>
+	</table>
+	</div>
+	
+	</ui:repeat> 
+
+
+	</ui:repeat>
+	</div>
+	
+	
+<div class="block">
+<h:link outcome="/index.xhtml" value="Indietro" class="nav float-left"/>
+</div>
+	
+	
+</ui:define>
+</ui:composition>
+
+
+
+
+	

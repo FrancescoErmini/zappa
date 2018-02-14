@@ -1,0 +1,5 @@
+it/francescoermini/zappa/model/operazione/OperazioneTest$FakeOperazione.class
+it/francescoermini/zappa/model/operazione/OperazioneTest.class
+it/francescoermini/zappa/dao/JpaTest.class
+it/francescoermini/zappa/dao/OperazionePersistenceTest.class
+it/francescoermini/zappa/controller/OperazioneAddControllerTest.class

@@ -1,0 +1,91 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/WEB-INF/templates/layout.xhtml">
+                
+<ui:define name="body">
+
+	<div class="block">
+			<h4>operazione: </h4>	
+			<h:outputText value="#{operazioneAddController.operazione.operazioneType}" />
+			
+			<hr/>
+    </div>
+
+	<div class="block">	
+	 	<h4> Responsabile: </h4> 
+		<h:selectOneMenu value="#{operazioneAddController.operazione.responsabile}"  converter="#{responsabileConverter}" required="true">
+			<f:selectItem itemValue="#{null}" itemLabel="Seleziona" noSelectionOption="true" />
+		
+		   	 <f:selectItems value="#{operazioneAddController.responsabili}" var="responsabile" itemValue="#{responsabile}" itemLabel="#{responsabile.nome}" />
+		</h:selectOneMenu>
+		
+		
+		<hr />
+	</div>	
+
+	
+		
+   <div class="block">	 
+		<h4> Data:</h4>
+		<h:inputText id="data" label="Enter Date: " value="#{operazioneAddController.operazione.data}" required="true"> 			
+				 <f:convertDateTime pattern="dd-MM-yyyy"/>
+		</h:inputText> 
+		<h:outputText value="dd-MM-yyyy" />
+	 	<h:message for="data" class="info" style="color:red" />
+	</div>
+	<div class="block">
+		<h4> Ora:</h4>
+		<h:inputText id="ora" label="Enter hour: " value="#{operazioneAddController.operazione.ora}" required="true"> 
+				<f:convertDateTime pattern="HH:mm" timeZone="Europe/Rome"/> 
+		</h:inputText>
+		<h:outputText value="HH:mm" />
+		 <h:message for="ora" class="info" style="color:red" />
+			
+		
+	<hr />
+	</div>
+	
+	
+	
+	
+	<div class="block">	
+
+ 	    <h4> Seleziona <h:outputText value="#{operazioneAddController.operazione.operazioneType.luogoType.pagina}" />:</h4>
+		<h:selectOneMenu  value="#{operazioneAddController.operazione.luogo}"  converter="#{luogoConverter}" required="true">
+				<f:selectItem itemValue="#{null}" itemLabel="Seleziona" noSelectionOption="true" /> 
+			    <f:selectItems value="#{operazioneAddController.luoghiPerOperazione}" var="luogo"  itemLabel="#{luogo.nome}" itemValue="#{luogo}" />
+				<f:ajax listener="#{operazioneAddController.configuraOggettiPerLuogo}" render="oggetti" />
+		</h:selectOneMenu>
+		
+	  <br/>
+		<h:panelGroup id = "oggetti" >
+		<h4>Seleziona <h:outputText value="#{operazioneAddController.operazione.operazioneType.oggettoType.nomeOggetto}"/>:</h4>	
+		<h:selectOneMenu  value="#{operazioneAddController.operazione.oggetto}" converter="#{oggettoConverter}"  rendered="#{not empty operazioneAddController.oggettiPerLuogo}" required="true">
+		      		        <f:selectItems value="#{operazioneAddController.oggettiPerLuogo}" var="oggetto" itemLabel="#{oggetto.numero}" itemValue="#{oggetto}"/>
+			
+		</h:selectOneMenu>
+		</h:panelGroup>
+	<hr />
+	</div>
+	
+	
+	
+     <div class="block">
+     	
+		<h:outputText class="info" value="errore, inserisci i seguenti campi per continuare:" rendered="#{operazioneAddController.validation2}"/>
+		<h:outputText class="info" value="#{operazioneAddController.validation2Message}" rendered="#{operazioneAddController.validation2}" />
+		
+		
+   		<h:link outcome="/operazione/operazione-add-1.xhtml" value="Indietro"  class="nav float-left"/>
+     
+		<h:commandButton action="#{operazioneAddController.redirectSpecificOperation}" value="Avanti"  class="nav float-right"/>
+  
+	
+	</div>
+
+</ui:define>
+
+</ui:composition>

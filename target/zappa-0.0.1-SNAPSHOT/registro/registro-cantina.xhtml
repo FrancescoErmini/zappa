@@ -1,0 +1,184 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition 
+xmlns="http://www.w3.org/1999/xhtml"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:decorate template="/WEB-INF/templates/layout.xhtml">
+   <ui:define name="body">
+
+
+
+
+
+
+<h:panelGroup rendered="#{empty registroController.registri}">
+			<i>attenzione: Nessun registro trovato </i>	
+		<i> creare una 
+		<h:link outcome="/operazione-add-1.xhtml" value=" nuova operazione"/>
+		</i>
+</h:panelGroup>
+
+ <ui:insert>
+	<ui:include src="/WEB-INF/registro-header.xhtml" />
+</ui:insert>
+
+
+<div class="tabella block">
+<table id="tabella-cantina" style="border-collapse: collapse">
+
+			<thead>
+			
+				<tr>
+					
+					
+					<th>Data</th>
+				
+					<th>Operazione</th>
+					<th>Botte</th>
+					
+					
+					<th> carico UVA</th>
+					<th> scarico UVA</th>
+					<th> carico raspi </th>
+					<th> scarico raspi </th>
+					<th> carico vinaccia</th>
+					<th> scarico vinaccia </th>
+					
+					<th> carico feccia </th>
+					<th> scarico feccia </th>
+					<th> carico mosto </th>
+					<th> scarico mosto </th>
+					<th> carico corr/tagli</th>
+					<th> scarico corr/tagli </th>
+					<th> Resa </th>
+					<th>Rif.</th>
+					<th></th>
+					
+				</tr>
+			</thead>
+			<tbody>
+			
+			<ui:repeat var="registro" value="#{registroController.registri}" >
+				<tr>
+					
+					   
+					   <td>
+					   		<h:outputText value="#{registro.operazione.data}">	</h:outputText>
+					   </td>
+					    <td>
+							<h:outputText value="#{registro.operazione.operazioneType.label}"></h:outputText>					
+						</td>			
+					   
+					   	<td>
+					   		<!--  <h:outputText value="#{registro.operazione.oggetto.oggettoType.nomeOggetto}: " />--> 
+							<h:outputText value="#{registro.operazione.oggetto.numero}" ></h:outputText>					
+						</td>
+					   
+					  
+
+
+					<!--  	<td>
+							<h:outputText value="#{registro.etichetta.toString()}" ></h:outputText>
+							<br/>
+							<h:outputText value="#{registro.denominazione.toString()}" ></h:outputText>
+						</td>-->
+				
+						<td>
+						<h:outputText value="#{registro.caricoUVA}" rendered="#{not registro.editable}"  ></h:outputText>
+						<h:inputText value="#{registro.caricoUVA}" rendered="#{registro.editable}"  ></h:inputText>
+						</td>
+						
+						<td>
+						<h:outputText value="#{registro.scaricoUVA}" rendered="#{not registro.editable}" ></h:outputText>
+						<h:inputText value="#{registro.scaricoUVA}" rendered="#{registro.editable}" ></h:inputText>
+						</td>
+					
+						<td>
+						<h:outputText value="#{registro.caricoRaspi}" rendered="#{not registro.editable}" ></h:outputText>
+						<h:inputText value="#{registro.caricoRaspi}" rendered="#{registro.editable}" ></h:inputText>
+						</td>
+						
+						<td>
+						<h:outputText value="#{registro.scaricoRaspi}" rendered="#{not registro.editable}" ></h:outputText>
+						<h:inputText value="#{registro.scaricoRaspi}" rendered="#{registro.editable}" ></h:inputText>
+						</td>
+				
+						<td>
+						<h:outputText value="#{registro.caricoVinacce}" rendered="#{not registro.editable}" ></h:outputText>
+						<h:inputText value="#{registro.caricoVinacce}" rendered="#{registro.editable}" ></h:inputText>
+						</td>
+						
+						<td>
+						<h:outputText value="#{registro.scaricoVinacce}" rendered="#{not registro.editable}" ></h:outputText>
+						<h:inputText value="#{registro.scaricoVinacce}" rendered="#{registro.editable}" ></h:inputText>
+						</td>
+					
+						<td>
+						<h:outputText value="#{registro.caricoFeccia}" rendered="#{not registro.editable}" ></h:outputText>
+						<h:inputText value="#{registro.caricoFeccia}" rendered="#{registro.editable}" ></h:inputText>
+						</td>
+						
+						<td>
+						<h:outputText value="#{registro.scaricoFeccia}" rendered="#{not registro.editable}" ></h:outputText>
+						<h:inputText value="#{registro.scaricoFeccia}" rendered="#{registro.editable}" ></h:inputText>
+						</td>
+				 
+						<td>
+						<h:outputText value="#{registro.caricoMosto}" rendered="#{not registro.editable}" ></h:outputText>
+						<h:inputText value="#{registro.caricoMosto}" rendered="#{registro.editable}" ></h:inputText>
+						</td>
+						
+						<td>
+						<h:outputText value="#{registro.scaricoMosto}" rendered="#{not registro.editable}" ></h:outputText>
+						<h:inputText value="#{registro.scaricoMosto}" rendered="#{registro.editable}" ></h:inputText>
+						</td>
+						
+						
+						
+			       	
+			       		<td>
+			       		<h:outputText value="#{registro.caricoTaglio}" rendered="#{not registro.editable}" ></h:outputText>
+						<h:inputText value="#{registro.caricoTaglio}" rendered="#{registro.editable}" ></h:inputText>
+						</td>
+						
+						<td>
+						<h:outputText value="#{registro.scaricoTaglio}" rendered="#{not registro.editable}" ></h:outputText>
+						<h:inputText value="#{registro.scaricoTaglio}" rendered="#{registro.editable}" ></h:inputText>
+						</td>
+			       	
+			       	
+			       	
+						
+						
+						<td><h:outputText value="#{registro.percentualeResa}" ></h:outputText></td>
+						<td>
+							<h:link outcome="/operazione/view/#{registro.operazione.operazioneType.label}.xhtml" value="dettagli" includeViewParams="true">
+								<f:param name="operazioneID" value="#{registro.operazione.id}"></f:param>			
+							</h:link>
+					   </td>
+					   
+						
+					   <td>
+					   <h:commandLink value="Edit" action="#{registroController.editAction(registro)}" rendered="#{not registro.editable}" />
+					   </td>
+						
+					</tr>
+					
+				</ui:repeat>
+			
+			</tbody>
+			
+		</table>
+</div>
+	    <div class="block">
+	    <h:link outcome="registro-select.xhtml" value="Indietro" class="float-left nav"></h:link> 
+	     
+	     <h:commandButton value="Salva" action="#{registroController.saveAction}" rendered="#{not empty registroController.registri}" class="float-right nav"/>
+		</div>
+		
+
+</ui:define>
+</ui:decorate>
+</ui:composition>

@@ -1,0 +1,40 @@
+
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/WEB-INF/templates/layout.xhtml">
+<ui:define name="body">
+
+	<div class="block">
+	  <h4>Seleziona tipo di registro:</h4>	
+		  <h:selectOneMenu id="registro-sel" value="#{registroSelectController.registroType}" required="true">
+		      	 <f:selectItem itemValue="#{null}" itemLabel="Seleziona" noSelectionOption="true" /> 
+		      	<f:selectItems value="#{registroSelectController.registroTypeValues()}" var="reg" itemLabel="#{reg}" itemValue="#{reg}"/>
+		   <f:ajax listener="#{registroSelectController.configuraLuoghiPerRegistro}" render="luoghi" />
+		</h:selectOneMenu>
+	   <hr/>
+	  </div>
+	  <div class="block">
+		<h:panelGroup id="luoghi">
+		<h4>Seleziona <h:outputText value="#{registroSelectController.registroType.luogoType.pagina}" />:</h4>
+		<h:selectOneMenu  id="luogo-sel" value="#{registroSelectController.luogo}"  converter="#{luogoConverter}" required="true" rendered="#{not empty registroSelectController.luoghiPerRegistro}"  >
+			<f:selectItem itemValue="#{null}" itemLabel="Seleziona" noSelectionOption="true" /> 
+	      	<f:selectItems value="#{registroSelectController.luoghiPerRegistro}" var="luogo" itemLabel="#{luogo.nome}" itemValue="#{luogo}"/>
+  	    </h:selectOneMenu>
+		</h:panelGroup>		    
+		</div>
+		
+		    
+		<div class="block">
+			<h:message for="registro-sel" class="info"/>
+			<h:message for="luogo-sel"  class="info"/>
+		<h:link outcome="/index.html" class="float-left nav">Indietro</h:link>  
+		<h:commandButton action="#{registroSelectController.redirectRegistro}"  value="Avanti" class="float-right nav" />    		    
+		</div>
+	
+
+
+</ui:define>
+</ui:composition>

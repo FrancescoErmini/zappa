@@ -1,0 +1,49 @@
+
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/WEB-INF/templates/layout.xhtml">
+<ui:define name="body">
+
+	<div class="block">
+	  <h4>Seleziona tipo di operazione:</h4>	
+		  <h:selectOneMenu id="operazione-sel" value="#{operazioneListSelectController.operazioneType}"  required="true">
+		      	 <f:selectItem itemValue="#{null}" itemLabel="Seleziona" noSelectionOption="true" /> 
+		      	<f:selectItems value="#{operazioneListSelectController.operazioneTypeValues()}" var="opType" itemLabel="#{opType}" itemValue="#{opType}"/>
+		  <f:ajax listener="#{operazioneListSelectController.configuraLuoghiPerOperazioneType}" render="luoghi" /> 
+		</h:selectOneMenu>
+	   <hr/>
+	  </div>
+
+	  	<div class="block">
+	  	<h:panelGroup id="luoghi">
+	  <h4>Seleziona <h:outputText value="#{operazioneListSelectController.operazioneType.luogoType.pagina}:" />  </h4>	
+		  <h:selectOneMenu id="luogo-sel" value="#{operazioneListSelectController.luogo}" converter="#{luogoConverter}"  required="true" rendered="#{not empty operazioneListSelectController.luoghiPerOperazione}">
+		      	 <f:selectItem itemValue="#{null}" itemLabel="Seleziona" noSelectionOption="true" /> 
+		     	<f:selectItems value="#{operazioneListSelectController.luoghiPerOperazione}" var="luogo" itemLabel="#{luogo.nome}" itemValue="#{luogo}"/>
+		</h:selectOneMenu>
+	   <hr/>
+	   </h:panelGroup>
+	  </div>
+	  
+	  	    
+		<div class="block">
+			<h:message for="operazione-sel" class="info"/>
+			<h:message for="luogo-sel"  class="info"/>
+		<h:link outcome="/index.html" class="float-left nav">Indietro</h:link>  
+		
+	<!--  	<h:link outcame="operazione-list.xhtml" value="Avanti" includeViewParams="true" class="float-right nav">>
+								<f:param name="luogo" value="#{operazioneListSelectController.luogo.nome}" ></f:param>
+								<f:param name="type" value="#{operazioneListSelectController.operazioneType.label}" ></f:param>
+		</h:link>-->
+	 <h:commandButton action="#{operazioneListSelectController.redirectOperazioneList}"  value="Avanti" class="float-right nav" >
+	  <!--  <f:ajax execute="@all" render="@all"/>-->
+	  </h:commandButton>    		    
+		
+		</div>
+		
+</ui:define>
+</ui:composition>
+	

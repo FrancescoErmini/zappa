@@ -1,0 +1,30 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                 template="/WEB-INF/templates/layout.xhtml">
+<ui:define name="body">
+<div class="block">
+
+	 <h4> Carico: </h4> 	
+	 <h:inputText size = "20" value = "#{operazioneAddController.operazione.carico}" />
+</div>
+<div class="block">	  
+	<h4> Scarico: </h4>
+	<h:inputTextarea value = "#{operazioneAddController.operazione.scarico}" />
+
+<hr />
+</div>
+
+        
+   <ui:insert>
+	<ui:include src="/WEB-INF/save-action.xhtml" />
+</ui:insert>
+ 
+		 
+
+
+
+</ui:define>
+</ui:composition>

@@ -1,0 +1,69 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition 
+xmlns="http://www.w3.org/1999/xhtml"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core">
+<!--  
+<f:metadata>
+		    <f:viewParam id="type" name="type" value="#{operazioneListController.type}" required="true"></f:viewParam>	
+			
+</f:metadata>-->
+<ui:decorate template="/WEB-INF/templates/layout.xhtml">
+   <ui:define name="body">
+
+<div class="block tabella-header">
+<h2>Operazioni
+<h:outputText value="#{operazioneListController.type} " />
+<h:outputText value=" #{operazioneListController.operazioni.get(0).luogo.luogoType.pagina}" rendered="#{not empty operazioneListController.operazioni}"/>
+<h:outputText value=" #{operazioneListController.luogo}" /> </h2>
+
+</div>
+
+<div class="tabella block">
+
+
+<table style="border-collapse: collapse">
+			<thead>
+				<tr>
+					<th>Data</th>
+					
+					<th>Operazione</th>
+					
+					<th>Ogg.</th>
+					
+					<th>Dettagli</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<ui:repeat var="operazioni" value="#{operazioneListController.operazioni}">
+					<tr>	
+						<td><h:outputText value="#{operazioni.data.toString()}"></h:outputText></td>
+						<td><h:outputText value="#{operazioni.operazioneType.label}"></h:outputText></td>
+					
+						<td>
+							<h:outputText value="#{operazioni.oggetto.oggettoType.nomeOggetto}: "></h:outputText>
+							<h:outputText value="#{operazioni.oggetto.numero}"></h:outputText>
+						</td>
+					
+						
+						
+						<td>
+						<h:link outcome="/operazione/view/#{operazioni.operazioneType.label}.xhtml" value="dettagli" includeViewParams="true">
+								<f:param name="operazioneID" value="#{operazioni.id}"></f:param>			
+						</h:link>
+					   </td>
+					
+					</tr>
+				</ui:repeat>
+			</tbody>
+		</table>
+	</div>
+	<div class="block">
+		<h:link outcome="/index.html"  class="float-left nav">Indietro</h:link>
+		</div>	
+
+</ui:define>
+</ui:decorate>
+</ui:composition>

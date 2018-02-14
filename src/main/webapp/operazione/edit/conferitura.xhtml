@@ -1,0 +1,55 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                 template="/WEB-INF/templates/layout.xhtml">
+<ui:define name="body">
+<!-- <h:outputText value="#{operazioneViewController.operazioneID}"/> -->
+
+
+<ui:insert>
+	<ui:include src="/WEB-INF/operazione-view.xhtml" />
+</ui:insert>
+
+
+<div class = "block">
+	 <h4> Carico: </h4> 	
+     <h:inputText value="#{operazioneEditController.operazione.carico}" />
+	 
+	<br />
+	<h4> Scarico: </h4>
+	<h:inputText value="#{operazioneEditController.operazione.scarico}"/>
+	
+	 <br />
+	<h4> Etichetta: </h4>	
+	<h:outputText value="#{operazioneEditController.operazione.etichetta}" />
+
+ 	<br />
+	<h4> Denominazione: </h4>
+	<h:outputText value="#{operazioneEditController.operazione.denominazione}" />
+
+</div>
+
+-->
+	
+<!--  
+        
+  <ui:insert>
+	<ui:include src="/WEB-INF/edit-action.xhtml" />
+</ui:insert>
+ 
+		 -->
+		 
+
+<!--  
+
+<div class="block">
+	
+	<h:commandButton  action="#{operazioneEditController.save()}" value="save"  class="float-right nav"/>
+
+</div>
+-->
+
+</ui:define>
+</ui:composition>

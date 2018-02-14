@@ -1,0 +1,51 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/WEB-INF/templates/layout.xhtml">
+<ui:define name="body">
+
+<div class="block">
+
+	<h4>Tipologia trattamento </h4>  
+   <h:selectOneMenu id="trattamento" value="#{operazioneAddController.operazione.tipologiaTrattamento}" >
+				 		<f:selectItem itemValue="#{null}" itemLabel="Seleziona" noSelectionOption="true" />
+				 
+				  		<f:selectItems value="#{operazioneAddController.operazione.getTipologiaTrattamentoValues()}" var="tipologiaTrattamento"
+				  						itemValue="#{tipologiaTrattamento}" itemLabel="#{tipologiaTrattamento.toString()}" />
+   </h:selectOneMenu>	
+	
+	<hr/>
+	
+</div>
+<div class="block">
+
+	<h4>Fase fenologica </h4>  
+   <h:selectOneMenu id="fasefenologica" value="#{operazioneAddController.operazione.faseFenologica}" >
+				 		<f:selectItem itemValue="#{null}" itemLabel="Seleziona" noSelectionOption="true" />
+				 
+				  		<f:selectItems value="#{operazioneAddController.operazione.getFaseFenologicaValues()}" var="faseFenologica"
+				  						itemValue="#{faseFenologica}" itemLabel="#{faseFenologica.toString()}" />
+   </h:selectOneMenu>	
+	
+	<hr/>
+	
+</div>
+
+<div class="block"  style="padding-top:20px; padding-bottom:20px;">
+<h4> Descrizione trattamento </h4>
+<h:inputTextarea  cols="40" rows="5" value="#{operazioneAddController.operazione.descrizioneTrattamento}" />
+<hr/>
+</div>
+        
+   <ui:insert>
+	<ui:include src="/WEB-INF/save-action.xhtml" />
+</ui:insert>
+ 
+		 
+
+
+
+</ui:define>
+</ui:composition>
